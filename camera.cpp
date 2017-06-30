@@ -106,7 +106,7 @@ RGBAVector * Camera::captureScene(const Scene scene, const int samplesPerPixel) 
 {
     RGBAVector *pixels = new RGBAVector[horizontalPixels * verticalPixels];
 
-    //TODO: The outer loop can be run in parallel for better performance
+#pragma omp parallel for
     for (int j = 0; j < verticalPixels; ++j)
     {
         for (int i = 0; i < horizontalPixels; ++i)
