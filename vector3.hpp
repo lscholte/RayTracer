@@ -11,21 +11,21 @@ class Vector3
 
         float getLength() const;
         Vector3 getUnitVector() const;
-        float dot(const Vector3 v) const;
-        Vector3 cross(const Vector3 v) const;
+        float dot(const Vector3 &v) const;
+        Vector3 cross(const Vector3 &v) const;
         bool isZeroVector() const;
 };
 
-Vector3 operator+(const Vector3 u, const Vector3 v);
-Vector3 operator-(const Vector3 u, const Vector3 v);
-Vector3 operator-(const Vector3 v);
-Vector3 operator*(const Vector3 u, const Vector3 v);
-Vector3 operator*(const Vector3 v, const float s);
-Vector3 operator*(const float s, const Vector3 v);
-Vector3 operator/(const Vector3 v, const float s);
-Vector3 operator+=(Vector3 &u, const Vector3 v);
-Vector3 operator-=(Vector3 &u, const Vector3 v);
-Vector3 operator*=(Vector3 &u, const float s);
-Vector3 operator/=(Vector3 &u, const float s);
+Vector3 operator+(const Vector3 &u, const Vector3 &v);
+Vector3 operator-(const Vector3 &u, const Vector3 &v);
+Vector3 operator-(const Vector3 &v);
+Vector3 operator*(const Vector3 &u, const Vector3 &v);
+Vector3 operator*(const Vector3 &v, float s);
+Vector3 operator*(float s, const Vector3 &v);
+Vector3 operator/(const Vector3 &v, float s);
+Vector3 operator+=(Vector3 &u, const Vector3 &v);
+Vector3 operator-=(Vector3 &u, const Vector3 &v);
+Vector3 operator*=(Vector3 &u, float s);
+Vector3 operator/=(Vector3 &u, float s);
 
 #endif // VECTOR3_HPP
