@@ -20,9 +20,9 @@ class Camera
 {
     public:
         Camera(int x, int y);
-        Camera(int x, int y, CameraOptions options);
+        Camera(int x, int y, const CameraOptions &options);
 
-        RGBAVector * captureScene(const Scene scene, const int samplesPerPixel) const;
+        RGBAVector * captureScene(const Scene &scene, int samplesPerPixel) const;
 
     private:
         Vector3 position, lookAt;
@@ -32,7 +32,7 @@ class Camera
         float lensRadius;
         Vector3 u, v, w;
 
-        static Vector3 traceRay(const Ray ray, Scene scene, int depth);
+        static Vector3 traceRay(const Ray &ray, const Scene &scene, int depth);
 
 
 };

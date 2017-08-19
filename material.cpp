@@ -9,12 +9,12 @@ Vector3 Material::emitted()
     return Vector3(0, 0, 0);
 }
 
-Diffuse::Diffuse(const Vector3 albedo)
+Diffuse::Diffuse(const Vector3 &albedo)
 {
     this->albedo = albedo;
 }
 
-bool Diffuse::scatter(const Ray incomingRay,
+bool Diffuse::scatter(const Ray &incomingRay,
                      const HitRecord &rec,
                      Vector3 &attenuation,
                      Ray &scatteredRay) const
@@ -25,12 +25,12 @@ bool Diffuse::scatter(const Ray incomingRay,
 }
 
 
-Metal::Metal(const Vector3 albedo)
+Metal::Metal(const Vector3 &albedo)
     : Metal(albedo, 0.0)
 {
 }
 
-Metal::Metal(const Vector3 albedo, float fuzz)
+Metal::Metal(const Vector3 &albedo, float fuzz)
 {
     this->albedo = albedo;
     if (fuzz < 1)
@@ -43,7 +43,7 @@ Metal::Metal(const Vector3 albedo, float fuzz)
     }
 }
 
-bool Metal::scatter(const Ray incomingRay,
+bool Metal::scatter(const Ray &incomingRay,
                      const HitRecord &rec,
                      Vector3 &attenuation,
                      Ray &scatteredRay) const
@@ -59,7 +59,7 @@ Dielectric::Dielectric(float refractiveIndex)
     this->refractiveIndex = refractiveIndex;
 }
 
-bool Dielectric::scatter(const Ray incomingRay, const HitRecord &rec, Vector3 &attenuation, Ray &scatteredRay) const
+bool Dielectric::scatter(const Ray &incomingRay, const HitRecord &rec, Vector3 &attenuation, Ray &scatteredRay) const
 {
     Vector3 normal;
     Vector3 reflected = reflect(incomingRay.getDirection(), rec.normal);
@@ -113,12 +113,12 @@ Light::Light()
 {
 }
 
-Light::Light(const Vector3 colour)
+Light::Light(const Vector3 &colour)
 {
     this->colour = colour;
 }
 
-bool Light::scatter(const Ray incomingRay,
+bool Light::scatter(const Ray &incomingRay,
                      const HitRecord &rec,
                      Vector3 &attenuation,
                      Ray &scatteredRay) const
@@ -131,7 +131,7 @@ Vector3 Light::emitted()
     return colour;
 }
 
-Vector3 reflect(const Vector3 v, const Vector3 n)
+Vector3 reflect(const Vector3 &v, const Vector3 &n)
 {
     return v - n*2*v.dot(n);
 }

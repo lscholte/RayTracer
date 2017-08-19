@@ -7,7 +7,7 @@ class Ray
 {
     public:
         Ray();
-        Ray(const Vector3 origin, const Vector3 direction);
+        Ray(const Vector3 &origin, const Vector3 &direction);
 
         Vector3 getOrigin() const;
         Vector3 getDirection() const;

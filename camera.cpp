@@ -43,7 +43,7 @@ Camera::Camera(int x, int y)
  * @param cameraRoll The roll (in degrees) of the camera,
  * measured counterclockwise
  */
-Camera::Camera(int x, int y, CameraOptions options)
+Camera::Camera(int x, int y, const CameraOptions &options)
 {
     //Convert Field of View and Camera Roll from degrees to radians
     float fovRadians = options.fieldOfView * M_PI/180;
@@ -102,7 +102,7 @@ Camera::Camera(int x, int y, CameraOptions options)
     vertical = 2*halfHeight*options.focusDistance*v;
 }
 
-RGBAVector * Camera::captureScene(const Scene scene, const int samplesPerPixel) const
+RGBAVector * Camera::captureScene(const Scene &scene, int samplesPerPixel) const
 {
     RGBAVector *pixels = new RGBAVector[horizontalPixels * verticalPixels];
 
@@ -146,7 +146,7 @@ RGBAVector * Camera::captureScene(const Scene scene, const int samplesPerPixel) 
     return pixels;
 }
 
-Vector3 Camera::traceRay(const Ray ray, Scene scene, int depth)
+Vector3 Camera::traceRay(const Ray &ray, const Scene &scene, int depth)
 {
     HitRecord record;
     bool surfaceHit = false;
