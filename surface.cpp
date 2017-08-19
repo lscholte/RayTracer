@@ -146,6 +146,63 @@ bool Rectangle::hitWithRay(const Ray r, const float minT, const float maxT, HitR
     return false;
 }
 
+Triangle::Triangle()
+{
+}
+
+Triangle::Triangle(Vector3 a, Vector3 b, Vector3 c, Material *material)
+{
+    this->a = a;
+    this->b = b;
+    this->c = c;
+    this->material = material;
+}
+
+bool Triangle::hitWithRay(const Ray r, const float minT, const float maxT, HitRecord &rec) const
+{
+    
+    Vector3 normal = (this->b - this->a).cross(this->b - this->c);
+
+    //Ray is parallel with triangle plane, so it will never intersect it
+    if (r.getDirection().dot(normal) == 0)
+    {
+        return false;
+    }
+    
+    //Otherwise Ray intersects plane of the triangle
+
+    float temp = ((this->b - r.getOrigin()).dot(normal)) /
+            (r.getDirection().dot(normal));
+
+    if (temp > minT && temp < maxT)
+    {
+
+        //Math for determining if point is inside rectangle is from
+        //http://math.stackexchange.com/questions/190111/how-to-check-if-a-point-is-inside-a-rectangle/190373#190373
+
+        //Point where ray intersects the plane
+        Vector3 p = r.getPointAtParameter(temp);
+        
+        float a = (this->b - this->a).cross(p - this->a).dot(normal);
+        float b = (this->c - this->b).cross(p - this->b).dot(normal);
+        float c = (this->a - this->c).cross(p - this->c).dot(normal);
+        
+
+        if (!((a < 0) == (b < 0) == (c < 0)))
+        {
+            return false;
+        }
+
+        rec.t = temp;
+        rec.hitLocation = p;
+        rec.normal = normal;
+        rec.material = material;
+        return true;
+    }
+
+    return false;
+}
+
 Sphere::Sphere()
 {
 }

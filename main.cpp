@@ -71,11 +71,19 @@ int main()
 //                          new Dielectric(1.5))
 //                          ));
 
-    scene.addSurface((new Rectangle(Vector3(0,0,0),
-                                   Vector3(0,0,1),
-                                   1, 1.5,
-                                   new Light(Vector3(1,0.8,0))))
-                     ->translate(Vector3(0,0,-1.999))
+//    scene.addSurface((new Rectangle(Vector3(0,0,0),
+//                                   Vector3(0,0,1),
+//                                   1, 1.5,
+//                                   new Light(Vector3(1,0.8,0))))
+//                     ->translate(Vector3(0,0,-1.999))
+//                     );
+    
+        scene.addSurface((new Triangle(
+                                Vector3(-2,0,-1.999),
+                                Vector3(2, 0, -1.999),
+                                Vector3(2,2,-1.999),
+                                new Light(Vector3(1,0.8,0))))
+//                     ->translate(Vector3(0,0,0.001))
                      );
 
 

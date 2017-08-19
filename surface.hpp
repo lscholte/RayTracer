@@ -70,4 +70,18 @@ class Rectangle : public Surface
         Vector3 a, b, c, d;
 };
 
+class Triangle : public Surface
+{
+    public:
+        Triangle();
+        Triangle(Vector3 a, Vector3 b, Vector3 c, Material *material);
+        
+        virtual bool hitWithRay(const Ray r, const float minT, const float maxT, HitRecord &rec) const;
+        
+    private:
+        Material *material;
+        Vector3 a, b, c;
+        
+};
+
 #endif // SURFACE_HPP
